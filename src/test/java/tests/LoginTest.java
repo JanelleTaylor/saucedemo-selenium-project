@@ -35,6 +35,7 @@ public class LoginTest extends BaseTest {
        Assert.assertEquals(loginErrorMsg, loginPage.getErrorMsg());
     }
 
+    @Test
     public void problemUserLogin(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.enterUsername("problem_user");
