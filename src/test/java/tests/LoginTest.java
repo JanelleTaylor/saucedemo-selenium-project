@@ -42,4 +42,28 @@ public class LoginTest extends BaseTest {
         loginPage.enterPassword(psswd);
         loginPage.clickLogin();
     }
+
+    @Test
+    public void performanceGlitchUserLogin(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUsername("performance_glitch_user");
+        loginPage.enterPassword(psswd);
+        loginPage.clickLogin();
+    }
+
+    @Test
+    public void errorUserLogin(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUsername("error_user");
+        loginPage.enterPassword(psswd);
+        loginPage.clickLogin();
+    }
+
+    @Test
+    public void visualUserLogin(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUsername("visual_user");
+        loginPage.enterPassword(psswd);
+        loginPage.clickLogin();
+    }
 }
