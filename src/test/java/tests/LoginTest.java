@@ -34,4 +34,11 @@ public class LoginTest extends BaseTest {
 
        Assert.assertEquals(loginErrorMsg, loginPage.getErrorMsg());
     }
+
+    public void problemUserLogin(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUsername("problem_user");
+        loginPage.enterPassword(psswd);
+        loginPage.clickLogin();
+    }
 }
