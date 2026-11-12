@@ -9,6 +9,7 @@ public class LoginTest extends BaseTest {
 
     private String psswd = "secret_sauce";
     private String pageURL;
+    private String errorText;
     //LoginPage loginPage = new LoginPage(driver);
 
     @Test
@@ -33,8 +34,31 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogin();
 
         //Verifying user is seeing desired error message
-        String errorText = loginPage.getErrorMsg();
+        errorText = loginPage.getErrorMsg();
         Assert.assertEquals(errorText, "Epic sadface: Sorry, this user has been locked out.");
+    }
+
+    @Test
+    public void invalidUserLogin(){
+        LoginPage loginPage = new LoginPage(driver);
+
+        //No credentials, hitting login button and verifying error message
+        loginPage.clickLogin();
+        errorText = loginPage.getErrorMsg();
+        Assert.assertEquals(errorText,"Epic sadface: Username is required");
+
+        //Username only, hitting login button and verifying error message
+        loginPage.enterUsername("standard_user");
+        loginPage.clickLogin();
+        errorText = loginPage.getErrorMsg();
+        Assert.assertEquals(errorText,"Epic sadface: Password is required");
+
+        //Invalid credentials and username
+        loginPage.enterUsername("admin");
+        loginPage.enterPassword("password");
+        loginPage.clickLogin();
+        errorText = loginPage.getErrorMsg();
+        Assert.assertEquals(errorText,"Epic sadface: Username and password do not match any user in this service");
     }
     /*
     @Test
