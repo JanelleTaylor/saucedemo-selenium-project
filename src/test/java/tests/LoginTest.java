@@ -9,7 +9,7 @@ public class LoginTest extends BaseTest {
 
     private String psswd = "secret_sauce";
     private String pageURL;
-    //private String loginErrorMsg = "Epic sadface: Sorry, this user has been locked out.";
+    //LoginPage loginPage = new LoginPage(driver);
 
     @Test
     public void standardUserLogin(){
@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
         pageURL = driver.getCurrentUrl();
         Assert.assertEquals(pageURL, "https://www.saucedemo.com/inventory.html");
     }
-    /*
+
     @Test
     public void lockedOutUserLogin(){
         LoginPage loginPage = new LoginPage(driver);
@@ -32,9 +32,11 @@ public class LoginTest extends BaseTest {
         loginPage.enterPassword(psswd);
         loginPage.clickLogin();
 
-       Assert.assertEquals(loginErrorMsg, loginPage.getErrorMsg());
+        //Verifying user is seeing desired error message
+        String errorText = loginPage.getErrorMsg();
+        Assert.assertEquals(errorText, "Epic sadface: Sorry, this user has been locked out.");
     }
-
+    /*
     @Test
     public void problemUserLogin(){
         LoginPage loginPage = new LoginPage(driver);
