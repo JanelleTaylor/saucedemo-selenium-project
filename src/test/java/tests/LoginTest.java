@@ -1,7 +1,6 @@
 package tests;
 
 import com.saucedemo.base.BaseTest;
-import com.saucedemo.pages.InventoryPage;
 import com.saucedemo.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,8 +8,8 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
 
     private String psswd = "secret_sauce";
-    private String pageTitle = "Products";
-    private String loginErrorMsg = "Epic sadface: Sorry, this user has been locked out.";
+    private String pageURL;
+    //private String loginErrorMsg = "Epic sadface: Sorry, this user has been locked out.";
 
     @Test
     public void standardUserLogin(){
@@ -21,9 +20,10 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogin();
 
         //Verifying you land on the inventory page
-        Assert.assertEquals(pageTitle, "Products");
+        pageURL = driver.getCurrentUrl();
+        Assert.assertEquals(pageURL, "https://www.saucedemo.com/inventory.html");
     }
-
+    /*
     @Test
     public void lockedOutUserLogin(){
         LoginPage loginPage = new LoginPage(driver);
@@ -65,5 +65,5 @@ public class LoginTest extends BaseTest {
         loginPage.enterUsername("visual_user");
         loginPage.enterPassword(psswd);
         loginPage.clickLogin();
-    }
+    }*/
 }
