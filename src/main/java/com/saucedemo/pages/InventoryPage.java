@@ -9,7 +9,8 @@ public class InventoryPage {
 
     //Locators
     private By pageTitleHeader = By.className("title");
-
+    private By menuBtn = By.id("react-burger-menu-btn");
+    private By logoutBtn = By.id("logout_sidebar_link");
 
     public InventoryPage(WebDriver driver){
         this.driver = driver;
@@ -19,5 +20,10 @@ public class InventoryPage {
         driver.findElement(pageTitleHeader).getText();
     }
 
-
+    public void clickMenu(){
+        driver.findElement(menuBtn).click();
+    }
+    public void clickLogout(){
+        driver.findElement(logoutBtn).click();
+    }
 }

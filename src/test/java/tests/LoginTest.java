@@ -1,16 +1,18 @@
 package tests;
 
 import com.saucedemo.base.BaseTest;
+import com.saucedemo.pages.InventoryPage;
 import com.saucedemo.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class LoginTest extends BaseTest {
 
     private String psswd = "secret_sauce";
     private String pageURL;
     private String errorText;
-    //LoginPage loginPage = new LoginPage(driver);
 
     @Test
     public void standardUserLogin(){
@@ -23,6 +25,17 @@ public class LoginTest extends BaseTest {
         //Verifying you land on the inventory page
         pageURL = driver.getCurrentUrl();
         Assert.assertEquals(pageURL, "https://www.saucedemo.com/inventory.html");
+
+        /*
+        Logging out and verifying user is returned to home page.
+        If user then tries to return to previous page, verifying session ended and they get an error message
+         */
+        InventoryPage inventoryPage = new InventoryPage(driver);
+        inventoryPage.clickMenu();
+        inventoryPage.clickLogout();
+        driver.navigate().back();
+        errorText = loginPage.getErrorMsg();
+        Assert.assertEquals(errorText, "Epic sadface: You can only access '/inventory.html' when you are logged in.");
     }
 
     @Test
